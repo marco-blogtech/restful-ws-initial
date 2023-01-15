@@ -3,6 +3,7 @@ package com.edicom.webservice.rest.restfulws.post;
 import com.edicom.webservice.rest.restfulws.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 //POJO for our social media Post
@@ -13,6 +14,7 @@ public class Post {
     @GeneratedValue // Used to generate simple primary keys
     private Integer id;
 
+    @NotNull
     @Size(min=1, message = "Post content should have at least 1 character") // Validation
     private String content;
 
@@ -58,7 +60,7 @@ public class Post {
     }
 
     // TO STRING
-    
+
     @Override
     public String toString() {
         return "Post{" +
