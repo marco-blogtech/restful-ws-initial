@@ -41,7 +41,6 @@ public class User {
     private LocalDate birthDate;
 
     @OneToMany(mappedBy = "user") // A user has more than 1 post
-    @JsonIgnore // Posts should not be retreived with user
     private List<Post> posts;
 
     // CONSTRUCTORS
