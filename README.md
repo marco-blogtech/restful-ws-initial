@@ -1,2 +1,2 @@
 # restful-ws
- Edicom Blog Tech Final Result
+ Edicom Blog Tech Initial Project
