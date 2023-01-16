@@ -66,7 +66,6 @@ public class Post {
         return "Post{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
-                ", user=" + user +
                 '}';
     }
 }

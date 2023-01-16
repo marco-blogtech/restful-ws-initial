@@ -14,38 +14,41 @@ import jakarta.validation.constraints.Size;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 //POJO for our social media User
 @Entity(name = "user_details") //In JPA there is a USER so we rename to user_details
-//@JsonFilter("userFilter") //Filter name for User
+@JsonFilter("userFilter") //Filter name for User
 public class User {
 
     @Id // Primary Key of our entity
     @GeneratedValue // Used to generate simple primary keys
     private Integer id;
 
-    @NotNull
     @Size(min=2, message = "Name should have at least 2 characters") // Validation
     @JsonProperty("user_name") // name should be written as user_name in our json
     private String name;
 
-    @NotNull
     @Size(min=8, message = "Password should have at least 8 characters") // Validation
     @JsonProperty("user_pass") // password should be written as user_pass in our json
     private String password;
 
-    @NotNull
     @Past(message = "Birth Date should be in the past")  // Validation - your BirthDate can not be in the future.
     @JsonProperty("birth_date") // birthDate should be written as birth_date in our json
     private LocalDate birthDate;
 
-    @OneToMany(mappedBy = "user") // A user has more than 1 post
-    private List<Post> posts;
+    @OneToMany(mappedBy = "user", orphanRemoval = true) // A user has more than 1 post
+    @JsonIgnore
+    private List<Post> posts = new ArrayList<Post>();
 
     // CONSTRUCTORS
 
     protected User() {
+        this.id = null;
+        this.name = null;
+        this.password = null;
+        this.birthDate = null;
     }
 
     public User(Integer id, String name, String password, LocalDate birthDate, List<Post> posts) {
@@ -95,7 +98,8 @@ public class User {
     }
 
     public void setPosts(List<Post> posts) {
-        this.posts = posts;
+        this.posts.clear();
+        this.posts.addAll(posts);
     }
 
     // TO STRING
@@ -107,23 +111,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", birthDate=" + birthDate +
-                ", posts=" + posts +
                 '}';
     }
 
-
-    // Utilities
-
-    public User mergeUser(User patchUser){
-        if(patchUser==null){
-            return this;
-        }
-        if(!StringUtils.equals(this.name, patchUser.getName())){
-            this.name = patchUser.getName();
-        }
-        if(!this.birthDate.equals(patchUser.getBirthDate())){
-            this.birthDate = patchUser.getBirthDate();
-        }
-        return this;
-    }
 }

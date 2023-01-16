@@ -30,12 +30,6 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- Dependency to activate security service
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>-->
-
 		<!-- Dependency to activate Jakarta Validation -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -70,12 +64,6 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
-		<!-- Dependency to activate HAL Explorer
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-rest-hal-explorer</artifactId>
-		</dependency>-->
-
 		<!-- Dependency to use Swagger-->
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -83,17 +71,31 @@
 			<version>2.0.0</version>
 		</dependency>
 
+		<!-- Dependency to activate HATEOAS -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+
+		<!-- Dependency to use easy Json Patch -->
+		<dependency>
+			<groupId>com.github.java-json-tools</groupId>
+			<artifactId>json-patch</artifactId>
+			<version>1.13</version>
+		</dependency>
+
+		<!-- Enabling LocalDate in json -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>2.14.0</version>
+		</dependency>
+
 		<!-- Dependency to support XML responses
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency> -->
-
-		<!-- Dependency to activate HATEOAS
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-hateoas</artifactId>
-		</dependency>-->
 
 	</dependencies>
 
